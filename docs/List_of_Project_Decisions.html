@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="zh-CN" xml:lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Decision List of CIL2EBC Project</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<body style="line-height:1.5em;background:#fffff0">
+<style>
+h1{font-size:1.8em;line-height:1.3em;text-align:center;}
+hr{width:60%;height:3px;color:#ff0000}
+li{margin-top:0.8em;margin-bottom:0.8em;}
+.cds{color:#108010;background-color:#fae0f0;font-weight:bold;}
+</style>
+<h1>Decision List of CIL2EBC Project<br />CIL2EBC项目决策列表</h1>
+<hr />
+It need decisions all the time while face the problem that is occurred on the execution of project, and fix the problem. Here list some problems on the project execution, and decisions for fix it.<br />
+<ul>
+<li>Because UEFI only support UCS-2, this CIL .asm file must use Unicode litte endian encoding, and CIL .asm source file must convert to the Unicode litte endian format manually, or a compile error occur.</li>
+<li>Because ECMA-335 defined too much keywords(about 500 keywords), and EBC only use a litte set of they, so it is decided that all keywords is default as illegal keyword, and only keywords happened on practical use can be allowed. If a keyword never happened on practical use, it is defined as illegal keyword.</li>
+<li>This is a tiny compile, can not support full set of C language. So it is decided that local variables alive on the stack is limit to 256 INT32(1024 bytes), expletory local variables must declare as static variables using static keyword; and there is no INT64 allowed to alive on stack, all INT64 localed to a function must declare as static; and there is no array allowed to alive on stack, all array localed to a function must declare as static; and there is no structure allowed to alive on stack, any structure localed to a function must declare as static variable using static keyword.</li>
+</ul>
+<hr />
+项目执行过程中, 面对所遇到的一些问题, 需要随时做出决策, 以解决这一问题. 这里列出一些项目执行过程中所碰到的问题, 以及所进行的决策.<br />
+<ul>
+<li>由于 UEFI 仅支持 UCS-2, 这里的 CIL .asm 文件必须使用 Unicode 小端编码, CIL .asm 文件必须手工转换成 Unicode 小端格式, 否则编译错误.</li>
+<li>因为 ECMA-335 里面的关键字太多, 多达近500种, 而 EBC 仅仅使用其中一个很小的子集, 所以决定: 所有的关键字缺省为非法关键字, 实际使用过程中碰到什么就允许什么, 不碰到的就不允许, 全都定义为非法.</li>
+<li>这是个超小型的编译器, 不能够支持完整的C语言全集. 决定堆栈里面的局部变量最多只能是256个int32(1024 bytes), 多余的局部变量必须使用 static 关键字声明为静态变量; 并且堆栈里面不允许有int64, 一切int64都必须声明为 static; 并且堆栈里面不允许有数组, 一切数组都必须声明为 static; 并且堆栈里面不允许有结构, 一切结构都必须使用 static 声明为静态变量.</li>
+</ul>
+</body>
+</html>

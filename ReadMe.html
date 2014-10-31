@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="zh-CN" xml:lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>CIL2EBC-ToolChain ReadMe</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<body style="line-height:1.5em;background:#fffff0">
+<style>
+h1{font-size:1.8em;line-height:1.3em;text-align:center;}
+hr{width:60%;height:3px;color:#ff0000}
+li{margin-top:0.8em;margin-bottom:0.8em;}
+.cds{color:#108010;background-color:#fae0f0;font-weight:bold;}
+</style>
+<h1>CIL2EBC-ToolChain ReadMe<br />CIL2EBC-ToolChain 读我文件</h1>
+<hr />
+Project Name: CIL to EBC ToolChain<br />
+Project Abbreviation: CIL2EBC-ToolChain<br />
+<br />
+Goal of Project: from microsoft's Visual Studio 2013's CL compiler's CIL output, generate EBC .efi executable file.<br />
+<ul>
+<li>1). Do not support ECMA-335 standard CIL, but only support CIL local language that output from VS2013.</li>
+<li>2). Do not support any type feature of CIL, but only support the subset that output from pure C fuctions and pure C data structures, because EBC itself do not support it.</li>
+<li>3). Because UEFI have no specs on calligraph of EBC, such as whether case sensitive and so on, so we must appoint a local language of EBC, and only support this local language.</li>
+<li>4). The finally output format of EBC .efi file completely follow UEFI standard, so it can be execute by a standard EBC interpreter.</li>
+</ul>
+Basic decisions of project:<br />
+<ul>
+<li>1). Project divide into three subitem, that is: CIL2EBC-SS, EBCasm, EBClink.</li>
+<li>2). CIL2EBC-SS finish the convert from CIL source file to EBC source file. This project do not generate .obj file directly from CIL, but generate EBC .EBCasm source file at first. Many jobs must be finished in this step, include register allocation, automatic inline, global register optimization, general purpose .inc head file generation.</li>
+<li>3). EBCasm finish the convert from .EBCasm source file to COFF format .EBCobj object file. Many jobs are the generate of .EBClib library functions.</li>
+<li>4). EBClink finish the link from EBC .EBCobj file to PE+ format EBC .efi file.</li>
+</ul>
+<hr />
+Current situation of project progress:<br />
+<br />
+CIL2EBC-SS: lexical analyzer and syntactic parser have been finished, now working for semantic analyzer.<br />
+<hr />
+项目名称: CIL 到 EBC 工具链<br />
+项目英文名称: CIL to EBC ToolChain<br />
+项目简称: CIL2EBC-ToolChain<br />
+<br />
+项目目标: 从微软 Visual Studio 2013 的 CL 编译器的 CIL 输出里面, 生成 EBC .efi 可执行文件<br />
+1). 不支持 ECMA-335 标准 CIL, 而是支持 VS2013 输出的 CIL 方言.<br />
+2). 不支持 CIL 里面的任何类型特性, 仅支持使用纯C函数/纯C数据结构输出的 CIL 子集, 因为 EBC 本身就不支持这些.<br />
+3). 由于 UEFI 并没有规范 EBC文法, 比如说是否大小写敏感之类的, 所以要制定一个自己的 EBC方言, 并且只支持这一方言.<br />
+4). 最终编译输出的 EBC .efi 可执行文件完全遵从 UEFI 标准, 以便能够在标准 EBC 解释器里面执行.<br />
+<br />
+基本项目决策:<br />
+1.　本项目分解为三个子项目, 分别为 CIL2EBC-SS, EBCasm, EBClink.<br />
+2.　CIL2EBC-SS 完成 CIL 源程序到 EBC 源程序的转换. 本项目并不从 CIL 当中直接生成 .obj 文件, 而是首先生成 EBC .EBCasm 源程序.<br />
+　　有大量的工作需要在这一部分完成, 包括寄存器分配, 自动内嵌, 全局寄存器优化, 通用 .inc 头文件的生成.<br />
+3.　EBCasm 完成从 .EBCasm 源程序汇编成　COFF 格式 .EBCobj 目标文件的工作. 大量的工作集中于 .EBClib 库函数的生成.<br />
+4.　EBClink 完成将 EBC .EBCobj 文件连接成 PE+ 格式 EBC .efi 文件的工作.<br />
+<hr />
+当前项目进展情况:<br />
+<br />
+CIL2EBC-SS: 已经完成词法分析器和语法分析器, 正在构造语义分析器.<br />
+<hr />
+</body>
+</html>
